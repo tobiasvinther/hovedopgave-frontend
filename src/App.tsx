@@ -1,5 +1,7 @@
 import { Button } from '@mui/material';
 import React, { useEffect } from 'react';
+import Navbar from './components/navbar/navbar';
+import React, { useEffect } from 'react';
 
 function App() {
   useEffect(() => {
@@ -13,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Button>Test</Button>
+        <Navbar/>
       </header>
     </div>
   );
