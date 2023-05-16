@@ -1,5 +1,4 @@
 import { Button } from '@mui/material';
-import React, { useEffect } from 'react';
 import Navbar from './components/navbar/navbar';
 import React, { useEffect } from 'react';
 
@@ -16,6 +15,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Navbar/>
+        <Button>Test</Button>
       </header>
     </div>
   );
