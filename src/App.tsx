@@ -1,4 +1,5 @@
 import { Button } from '@mui/material';
+import Navbar from './components/navbar/navbar';
 import React, { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import { Grid } from "@mui/material";
@@ -17,7 +18,11 @@ function App(): JSX.Element {
 
    
   return (
-    <React.Fragment>
+    <div className="App">
+      <header className="App-header">
+        <Navbar/>
+        <Button>Test</Button>
+        <React.Fragment>
       <Grid 
         container
         direction='column'
@@ -29,6 +34,8 @@ function App(): JSX.Element {
           <SearchBtn />
       </Grid>
     </React.Fragment>
+      </header>
+    </div>
   );
 }
 
