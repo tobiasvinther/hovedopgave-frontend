@@ -1,6 +1,5 @@
-import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
 export default function SearchBar() {
   return (
@@ -15,11 +14,11 @@ export default function SearchBar() {
 }
 
 const birds = [
-  { label: 'Blåhals' },
-  { label: 'Solsort' },
-  { label: 'Stork' },
-  { label: 'Allike'},
-  { label: 'Krage' },
+  { label: "Blåhals" },
+  { label: "Solsort" },
+  { label: "Stork" },
+  { label: "Allike" },
+  { label: "Krage" },
   { label: "Musvit" },
-  { label: 'Grågås' },
+  { label: "Grågås" },
 ];

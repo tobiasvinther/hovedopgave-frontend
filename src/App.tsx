@@ -1,39 +1,17 @@
-import { Button } from '@mui/material';
-import Navbar from './components/navbar/navbar';
-import React, { useState, useEffect } from 'react';
-import SearchBar from './components/SearchBar';
-import { Grid } from "@mui/material";
-import SearchBtn from './components/SearchBtn';
+import Navbar from "./components/navbar/navbar";
+import Home from "./pages/home/home";
+import Observation from "./pages/observation/observation";
+import { Route, Routes } from "react-router";
 
-function App(): JSX.Element {
-
-  useEffect(() => {
-    fetch(`http://localhost:8080/`)
-     .then((response: Response) => response.json())
-     .then((actualData: any) => console.log(actualData))
-     .catch((err: Error) => {
-      console.log(err.message);
-     });
-   }, [])
-
-   
+function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Navbar/>
-        <Button>Test</Button>
-        <React.Fragment>
-      <Grid 
-        container
-        direction='column'
-        alignItems='center'
-        justifyContent='center'
-        style={{ minHeight: "50vh" }}
-        >
-          <SearchBar />
-          <SearchBtn />
-      </Grid>
-    </React.Fragment>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="Observation" element={<Observation />} />
+        </Routes>
       </header>
     </div>
   );
