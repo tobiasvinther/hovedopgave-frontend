@@ -1,21 +1,15 @@
-import { Button } from '@mui/material';
-import Navbar from './components/navbar/navbar';
-import React, { useEffect } from 'react';
+import Navbar from "./components/navbar/navbar";
+import Observation from "./pages/observation/observation";
+import { Route, Routes } from "react-router";
 
 function App() {
-  useEffect(() => {
-    fetch(`http://localhost:8080/`)
-     .then((response) => response.json())
-     .then((actualData) => console.log(actualData))
-     .catch((err) => {
-      console.log(err.message);
-     });
-   }, [])
   return (
     <div className="App">
       <header className="App-header">
-        <Navbar/>
-        <Button>Test</Button>
+        <Navbar />
+        <Routes>
+          <Route path="Observation" element={<Observation />} />
+        </Routes>
       </header>
     </div>
   );
