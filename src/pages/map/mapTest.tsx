@@ -2,7 +2,7 @@ import {GoogleMap, useLoadScript, Marker, MarkerF} from "@react-google-maps/api"
 import {useMemo} from "react";
 import { mapStyles } from "../../components/map/mapStyles"
 import { Grid } from "@mui/material";
-import * as dotenv from "dotenv"
+//mport * as dotenv from "dotenv"
 //import Map from "../../components/map/map";
 //import pin from "Frontend/graphics/pin.png"
 //import { Wrapper, Status } from "@googlemaps/react-wrapper"
@@ -11,12 +11,13 @@ import * as dotenv from "dotenv"
 
 export default function MapView() {
 
-    dotenv.config()
+    //dotenv.config()
 
     let key = ""
 
-    if(process.env.GOOGLE_API) {
-        key = process.env.GOOGLE_API
+    if(process.env.REACT_APP_GOOGLE_API) {
+        key = process.env.REACT_APP_GOOGLE_API
+        console.log("API key loaded")
     }
 
     const { isLoaded } = useLoadScript({
