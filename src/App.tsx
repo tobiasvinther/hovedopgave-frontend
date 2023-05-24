@@ -1,6 +1,6 @@
 import Navbar from "./components/navbar/navbar";
 import Home from "./pages/home/home";
-import Observation from "./pages/observation/observation";
+import { Observation } from "./pages/observation/observation";
 import { Route, Routes } from "react-router";
 
 function App() {
@@ -10,7 +10,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="Observation" element={<Observation />} />
+          <Route
+            path="Observation"
+            element={<Observation onSubmit={() => {}} />}
+          />
         </Routes>
       </header>
     </div>
