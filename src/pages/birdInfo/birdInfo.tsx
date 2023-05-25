@@ -1,4 +1,4 @@
-import { Grid, Button, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import PhotoGrid from "../../components/fotofeed/photoGrid";
 
 export default function BirdInfo() {

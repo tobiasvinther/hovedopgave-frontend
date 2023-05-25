@@ -1,20 +1,56 @@
+import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 
+interface Image {
+  url: string;
+}
+
+
 export default function PhotoGrid() {
+
+  const [images, setImages] = useState<Image[]>([]);
+
+  useEffect(() => {
+    fetchImages();
+  }, [])
+
+  useEffect(() => {
+    console.log(images)
+  }, [images])
+  
+  async function fetchImages() {
+    try {
+      const response = await fetch('http://localhost:8080/api/images/2'); //HARDCODED ID PT
+      const data = await response.json();
+      console.log("Data", data)
+      const imageList : Image[] = [];
+      data.forEach(function (image : any) {
+        const urlString : string = image.path.replaceAll("\\", "/")
+        const imageUrl = {url : "localhost:8080/" + urlString}
+        imageList.push(imageUrl)
+      });
+      setImages(imageList);
+      
+    } catch (error) {
+        console.error('Error fetching images:', error);
+    }
+    
+  }
+
   return (
     <Box 
         //sx={{ width: 1400, height: 650, overflowY: 'auto' }}
         sx={{ overflowY: 'auto' }}
     >
       <ImageList variant="masonry" cols={6} gap={8}>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img}>
+        {images.map((item) => (
+          <ImageListItem key={item.url}>
             <img
-              src={`${item.img}?w=248&fit=crop&auto=format`}
-              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.title}
+              src={`${item.url}?w=248&fit=crop&auto=format`}
+              srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+              //alt={item.title}
               loading="lazy"
             />
           </ImageListItem>
@@ -27,7 +63,7 @@ export default function PhotoGrid() {
 const itemData = [
   {
     img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Luscinia_svecica_volgae.jpg/250px-Luscinia_svecica_volgae.jpg',
-    title: 'Bed',
+    //title: 'Bed',
   },
   {
     img: 'https://mst.dk/media/116691/blaahals-cb.jpg?width=678',
