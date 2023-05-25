@@ -28,7 +28,7 @@ export default function PhotoGrid() {
       const imageList : Image[] = [];
       data.forEach(function (image : any) {
         const urlString : string = image.path.replaceAll("\\", "/")
-        const imageUrl = {url : "localhost:8080/" + urlString}
+        const imageUrl = {url : "http://localhost:8080/" + urlString}
         imageList.push(imageUrl)
       });
       setImages(imageList);
