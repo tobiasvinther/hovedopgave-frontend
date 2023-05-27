@@ -10,6 +10,7 @@ interface Values {
   longitude: string;
   date: Dayjs;
   note: string;
+  image: string;
 }
 interface ObservationProps {
   onSubmit: (values: Values) => void;
@@ -25,6 +26,7 @@ export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
           longitude: "",
           date: dayjs(Date.now()),
           note: "",
+          image: File.name,
         }}
         onSubmit={(values) => onSubmit(values)}
       >
@@ -33,7 +35,6 @@ export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
             <div>
               <TextField
                 sx={{ marginBottom: 5, marginTop: 5, width: 300 }}
-                required
                 label="Hvilken fugl har du set"
                 value={values.species}
                 name="species"
@@ -43,8 +44,8 @@ export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
             <div>
               <TextField
                 name="latitude"
+                label="Bredegrad"
                 sx={{ marginBottom: 5, width: 300 }}
-                required
                 value={values.latitude}
                 onChange={handleChange}
               />
@@ -52,8 +53,8 @@ export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
             <div>
               <TextField
                 name="longitude"
+                label="Længdegrad"
                 sx={{ marginBottom: 5, width: 300 }}
-                required
                 value={values.longitude}
                 onChange={handleChange}
               />
@@ -70,8 +71,25 @@ export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
               </LocalizationProvider>
             </div>
             <div>
+              <Button variant="contained" component="label">
+                Upload billede af fugl
+                <input
+                  accept="image/*"
+                  type="file"
+                  hidden
+                  id="image"
+                  name="image"
+                  onChange={(imageValue) => {
+                    if (!imageValue.currentTarget.files) return;
+                    setFieldValue("image", imageValue.currentTarget.files);
+                  }}
+                />
+              </Button>
+            </div>
+            <div>
               <TextField
                 name="note"
+                label="Note"
                 sx={{ marginBottom: 5, width: 300 }}
                 multiline
                 rows={4}
@@ -83,6 +101,7 @@ export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
             <Button
               variant="contained"
               type="submit"
+              onClick={() => console.log(values)}
               sx={{ marginBottom: 5, width: 300 }}
             >
               Submit
