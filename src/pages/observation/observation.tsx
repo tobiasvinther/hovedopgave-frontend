@@ -1,8 +1,9 @@
-import { Button, TextField } from "@mui/material";
+import { Button, IconButton, TextField } from "@mui/material";
 import { Formik, Form } from "formik";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
+import { AddAPhoto } from "@mui/icons-material";
 
 interface Values {
   species: string;
@@ -10,13 +11,16 @@ interface Values {
   longitude: string;
   date: Dayjs;
   note: string;
-  image: string;
+  image: File | null;
+  imageRef: any;
 }
 interface ObservationProps {
   onSubmit: (values: Values) => void;
 }
 
-export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
+export const Observation: React.FC<ObservationProps> = () => {
+  const formData = new FormData();
+
   return (
     <div style={{ textAlign: "center" }}>
       <Formik
@@ -26,9 +30,21 @@ export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
           longitude: "",
           date: dayjs(Date.now()),
           note: "",
-          image: File.name,
+          image: null,
+          imageRef: "",
         }}
-        onSubmit={(values) => onSubmit(values)}
+        onSubmit={(values) => {
+          if (values.image) formData.append("image", values.image);
+          formData.append("species", values.species);
+          formData.append("latitude", values.latitude);
+          formData.append("longitude", values.longitude);
+          formData.append("date", values.date.toString());
+          formData.append("note", values.note);
+          fetch("http://localhost:8080/api/upload", {
+            method: "POST",
+            body: formData,
+          });
+        }}
       >
         {({ values, handleChange, setFieldValue }) => (
           <Form>
@@ -71,8 +87,8 @@ export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
               </LocalizationProvider>
             </div>
             <div>
-              <Button variant="contained" component="label">
-                Upload billede af fugl
+              <IconButton component="label" sx={{ marginBottom: 5 }}>
+                <AddAPhoto />
                 <input
                   accept="image/*"
                   type="file"
@@ -81,10 +97,19 @@ export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
                   name="image"
                   onChange={(imageValue) => {
                     if (!imageValue.currentTarget.files) return;
-                    setFieldValue("image", imageValue.currentTarget.files);
+                    setFieldValue("image", imageValue.currentTarget.files[0]);
+                    values.imageRef = URL.createObjectURL(
+                      imageValue.currentTarget.files[0]
+                    );
                   }}
                 />
-              </Button>
+              </IconButton>
+              <div>
+                <img
+                  src={values.imageRef}
+                  style={{ maxWidth: 256, maxHeight: 512 }}
+                />
+              </div>
             </div>
             <div>
               <TextField
@@ -98,12 +123,7 @@ export const Observation: React.FC<ObservationProps> = ({ onSubmit }) => {
               />
             </div>
             <pre>{JSON.stringify(values, null, 2)}</pre>
-            <Button
-              variant="contained"
-              type="submit"
-              onClick={() => console.log(values)}
-              sx={{ marginBottom: 5, width: 300 }}
-            >
+            <Button variant="contained" type="submit" sx={{ width: 300 }}>
               Submit
             </Button>
           </Form>
