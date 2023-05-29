@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
@@ -6,7 +6,7 @@ interface Bird {
   label: string;
 }
 
-const SearchBar: React.FC = () => {
+export default function SearchBar() {
   const [birds, setBirds] = useState<Bird[]>([]);
 
   useEffect(() => {
@@ -27,7 +27,20 @@ const SearchBar: React.FC = () => {
   };
 
   if (birds.length === 0) {
-    return null;
+    return (
+      <div>
+        <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={birds}
+          getOptionLabel={(option) => option.label}
+          sx={{ width: 300 }}
+          renderInput={(params) => (
+            <TextField {...params} label="Failed to fetch birds" error />
+          )}
+        />
+      </div>
+    );
   }
 
   return (
@@ -44,6 +57,4 @@ const SearchBar: React.FC = () => {
       />
     </div>
   );
-};
-
-export default SearchBar;
+}

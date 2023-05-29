@@ -1,9 +1,17 @@
-import { Button, IconButton, TextField } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  Stack,
+  TextField,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { Formik, Form } from "formik";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { AddAPhoto } from "@mui/icons-material";
+import { Container } from "../../components/container/container";
 
 interface Values {
   species: string;
@@ -20,14 +28,24 @@ interface ObservationProps {
 
 export const Observation: React.FC<ObservationProps> = () => {
   const formData = new FormData();
+  const latitudeRegex =
+    /^(54\.6[0-9]{4}|54\.[7-9][0-9]{4}|55\.[0-8][0-9]{4}|55\.9[0-2][0-9]{3})$/;
+  const longitudeRegex =
+    /^(8\.[0-9]{4}|9\.[0-8][0-9]{4}|9\.9[0-9]{4}|10\.[0-3][0-9]{4}|10\.4[0-2][0-9]{3})$/;
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <Container>
+      <Typography
+        variant="h5"
+        sx={{ marginTop: 2, marginLeft: 55, marginBottom: 2 }}
+      >
+        Observation
+      </Typography>
       <Formik
         initialValues={{
           species: "",
-          latitude: "",
-          longitude: "",
+          latitude: "0",
+          longitude: "0",
           date: dayjs(Date.now()),
           note: "",
           image: null,
@@ -48,87 +66,95 @@ export const Observation: React.FC<ObservationProps> = () => {
       >
         {({ values, handleChange, setFieldValue }) => (
           <Form>
-            <div>
+            <Stack spacing={3} style={{ alignItems: "center" }}>
               <TextField
-                sx={{ marginBottom: 5, marginTop: 5, width: 300 }}
+                required
+                sx={{ width: 300 }}
                 label="Hvilken fugl har du set"
                 value={values.species}
                 name="species"
                 onChange={handleChange}
               />
-            </div>
-            <div>
               <TextField
+                required
                 name="latitude"
                 label="Bredegrad"
-                sx={{ marginBottom: 5, width: 300 }}
+                sx={{ width: 300 }}
                 value={values.latitude}
                 onChange={handleChange}
+                error={!values.latitude && !latitudeRegex.test(values.latitude)}
+                helperText={
+                  values.latitude && !latitudeRegex.test(values.latitude)
+                    ? "Invalid latitude coordinate"
+                    : null
+                }
               />
-            </div>
-            <div>
               <TextField
+                required
                 name="longitude"
                 label="Længdegrad"
-                sx={{ marginBottom: 5, width: 300 }}
+                sx={{ width: 300 }}
                 value={values.longitude}
                 onChange={handleChange}
+                error={
+                  !values.longitude && !longitudeRegex.test(values.longitude)
+                }
+                helperText={
+                  values.longitude && !longitudeRegex.test(values.longitude)
+                    ? "Invalid latitude coordinate"
+                    : null
+                }
               />
-            </div>
-            <div>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
-                  sx={{ marginBottom: 5, width: 300 }}
+                  sx={{ width: 300 }}
                   format="DD/MM/YYYY"
                   label="Dato"
                   onChange={(newValue) => setFieldValue("date", newValue, true)}
                   value={values.date}
                 />
               </LocalizationProvider>
-            </div>
-            <div>
-              <IconButton component="label" sx={{ marginBottom: 5 }}>
-                <AddAPhoto />
-                <input
-                  accept="image/*"
-                  type="file"
-                  hidden
-                  id="image"
-                  name="image"
-                  onChange={(imageValue) => {
-                    if (!imageValue.currentTarget.files) return;
-                    setFieldValue("image", imageValue.currentTarget.files[0]);
-                    values.imageRef = URL.createObjectURL(
-                      imageValue.currentTarget.files[0]
-                    );
-                  }}
-                />
-              </IconButton>
-              <div>
-                <img
-                  src={values.imageRef}
-                  style={{ maxWidth: 256, maxHeight: 512 }}
-                />
-              </div>
-            </div>
-            <div>
               <TextField
                 name="note"
                 label="Note"
-                sx={{ marginBottom: 5, width: 300 }}
+                sx={{ width: 300 }}
                 multiline
                 rows={4}
                 value={values.note}
                 onChange={handleChange}
               />
-            </div>
-            <pre>{JSON.stringify(values, null, 2)}</pre>
-            <Button variant="contained" type="submit" sx={{ width: 300 }}>
-              Submit
-            </Button>
+              <Tooltip title="Tilføj billede">
+                <IconButton component="label">
+                  <AddAPhoto />
+                  <input
+                    accept="image/*"
+                    type="file"
+                    hidden
+                    id="image"
+                    name="image"
+                    onChange={(imageValue) => {
+                      if (!imageValue.currentTarget.files) return;
+                      setFieldValue("image", imageValue.currentTarget.files[0]);
+                      values.imageRef = URL.createObjectURL(
+                        imageValue.currentTarget.files[0]
+                      );
+                    }}
+                  />
+                </IconButton>
+              </Tooltip>
+              <img
+                alt=""
+                src={values.imageRef}
+                style={{ maxWidth: 256, maxHeight: 512 }}
+              />
+
+              <Button variant="contained" type="submit" sx={{ width: 300 }}>
+                Submit
+              </Button>
+            </Stack>
           </Form>
         )}
       </Formik>
-    </div>
+    </Container>
   );
 };
