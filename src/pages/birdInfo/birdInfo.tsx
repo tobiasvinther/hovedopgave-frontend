@@ -4,13 +4,6 @@ import { useEffect, useState } from "react";
 import BirdSelect from "../../components/birdSelect/birdSelect";
 import InfoList from "./infoList";
 
-/*
-1. Dropdown til at vælge fugl
-2. Fetch fugle fra backend til dropdown
-3. Når man skifter fugl i dropdown skal man fetche billeder og tekst fra backend
-*/
-
-
 export default function BirdInfo() {
 
     interface Bird {
@@ -59,7 +52,6 @@ export default function BirdInfo() {
     <div style={{ marginLeft: '190px', marginRight: '190px', marginTop: '40px' }}>
         <Grid 
             container spacing={2} 
-            //sx={{ marginX: { xs: '40px', md: '190px' }, marginY: { xs: '4px', md: '20px' } }}
             >
             <Grid item xs={1}>
                 <Typography variant="h4">{selectedItem}</Typography>

@@ -41,7 +41,6 @@ export default function BirdSelect({ onSelectChange } : any) {
   };
 
   return (
-    //<Box sx={{ minWidth: 120 }}>
     <>
         <FormControl sx={{minWidth: 120 }} size="medium">
             <InputLabel id="demo-simple-select-label">Art</InputLabel>
@@ -58,13 +57,9 @@ export default function BirdSelect({ onSelectChange } : any) {
                     {item.species}
                 </MenuItem>
             ))}
-            {/*<MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-    <MenuItem value={30}>Thirty</MenuItem>*/}
             </Select>
         
         </FormControl>
     </>
-    //</Box>
   );
 }
