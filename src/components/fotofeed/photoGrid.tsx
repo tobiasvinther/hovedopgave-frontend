@@ -7,14 +7,14 @@ interface Image {
   url: string;
 }
 
-
-export default function PhotoGrid() {
+export default function PhotoGrid({ birdId } : any) {
 
   const [images, setImages] = useState<Image[]>([]);
 
   useEffect(() => {
+    console.log('Fetching images with id:', birdId)
     fetchImages();
-  }, [])
+  }, [birdId])
 
   useEffect(() => {
     console.log(images)
@@ -22,7 +22,7 @@ export default function PhotoGrid() {
   
   async function fetchImages() {
     try {
-      const response = await fetch('http://localhost:8080/api/images/2'); //HARDCODED ID PT
+      const response = await fetch('http://localhost:8080/api/images/' + birdId); //HARDCODED ID PT
       const data = await response.json();
       console.log("Data", data)
       const imageList : Image[] = [];
