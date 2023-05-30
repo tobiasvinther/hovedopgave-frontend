@@ -1,7 +1,6 @@
 import Navbar from "./components/navbar/navbar";
 import Home from "./pages/home/home";
 
-import Observation from "./pages/observation/observation";
 import BirdInfo from "./pages/birdInfo/birdInfo";
 import MapView from "./pages/map/mapTest";
 import { Observation } from "./pages/observation/observation";
@@ -14,7 +13,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="Observation" element={<Observation />} />
           <Route path="BirdInfo" element={<BirdInfo/>} />
           <Route path="MapView" element={<MapView/>} />
           <Route
