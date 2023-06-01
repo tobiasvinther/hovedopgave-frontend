@@ -5,6 +5,7 @@ import BirdInfo from "./pages/birdInfo/birdInfo";
 import MapView from "./pages/map/mapTest";
 import { Observation } from "./pages/observation/observation";
 import { Route, Routes } from "react-router";
+import ObservationCardTest from "./pages/observationCardTest/observationCardTest";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             path="Observation"
             element={<Observation onSubmit={() => {}} />}
           />
+          <Route path="ObservationCardTest" element={<ObservationCardTest/>} />
         </Routes>
       </header>
     </div>
