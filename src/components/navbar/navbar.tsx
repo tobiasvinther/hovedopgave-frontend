@@ -24,18 +24,66 @@ export default function Navbar() {
           FOTOFUGLEN
         </Typography>
         <Stack direction="row" spacing={2}>
-          {pages.map((page) => (
-            <Button key={page}>
-              <Typography textAlign="center">
-                <Link
-                  to={`${page}`}
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  {page}
-                </Link>
-              </Typography>
-            </Button>
-          ))}
+          <Button key="Profile">
+            <Typography textAlign="center">
+              <Link
+                to={`Profile`}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Profile
+              </Link>
+            </Typography>
+          </Button>
+          <Button key="Photos">
+            <Typography textAlign="center">
+              <Link
+                to={`Photos`}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Photos
+              </Link>
+            </Typography>
+          </Button>
+          <Button key="Observation">
+            <Typography textAlign="center">
+              <Link
+                to={`Observation`}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Observation
+              </Link>
+            </Typography>
+          </Button>
+          <Button key="Logout">
+            <Typography textAlign="center">
+              <Link
+                to={`Logout`}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Logout
+              </Link>
+            </Typography>
+          </Button>
+          <Button key="Login">
+            <Typography textAlign="center">
+              <Link
+                to={`Login`}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Login
+              </Link>
+            </Typography>
+          </Button>
+          <Button key="Signup">
+            <Typography textAlign="center">
+              <Link
+                to={`Signup`}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Signup
+              </Link>
+            </Typography>
+          </Button>
         </Stack>
       </Toolbar>
     </AppBar>
