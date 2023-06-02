@@ -6,7 +6,7 @@ interface Bird {
   label: string;
 }
 
-export default function SearchBar() {
+export default function SearchBar({ onSearchChange, onDropdownChange } : any) {
   const [birds, setBirds] = useState<Bird[]>([]);
 
   useEffect(() => {
@@ -25,6 +25,17 @@ export default function SearchBar() {
       console.error("Error fetching data:", error);
     }
   };
+
+  function handleInputChange(event : any) {
+    const { value } = event.target;
+    onSearchChange(event, value); // Invoke the callback with the updated value
+    console.log(value)
+  }
+
+  function handleSelectFromAutocomplete(event : any, value : any) {
+    onDropdownChange(event, value?.label);
+    console.log("Valgt fugl:", value?.label);
+  }
 
   if (birds.length === 0) {
     return (
@@ -51,8 +62,9 @@ export default function SearchBar() {
         options={birds}
         getOptionLabel={(option) => option.label}
         sx={{ width: 300 }}
+        onChange={handleSelectFromAutocomplete}
         renderInput={(params) => (
-          <TextField {...params} label="Søg på en fugl" />
+          <TextField {...params} label="Hvilken fugl vil du se i dag?" onChange={handleInputChange}/>
         )}
       />
     </div>
