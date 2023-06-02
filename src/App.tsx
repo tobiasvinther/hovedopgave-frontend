@@ -5,6 +5,8 @@ import BirdInfo from "./pages/birdInfo/birdInfo";
 import MapView from "./pages/map/mapTest";
 import { Observation } from "./pages/observation/observation";
 import { Route, Routes } from "react-router";
+import Login from "./pages/login/login";
+import Register from "./pages/register/register";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
             path="Observation"
             element={<Observation onSubmit={() => {}} />}
           />
+          <Route path="Login" element={<Login/>} />
+          <Route path="Register" element={<Register/>} />
         </Routes>
       </header>
     </div>
