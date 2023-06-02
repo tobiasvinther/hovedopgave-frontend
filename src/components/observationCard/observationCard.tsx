@@ -6,7 +6,25 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 
-export default function ObservationCard() {
+type ObservationProps = {
+  observationData : {
+    id : Number,
+    date : Date,
+    note : string,
+    BirdId : Number,
+    UserId : Number
+  }
+}
+
+/*
+Brug BirdId til at finde den rette fugl
+Find Location
+Brug UserId til at finde user
+etc.
+
+*/
+
+export default function ObservationCard({observationData} : ObservationProps ) {
 
   return (
     <>
@@ -14,7 +32,7 @@ export default function ObservationCard() {
             <Box sx={{ display: 'grid', gridTemplateColumns: '1fr auto' }}>
               <CardContent>
                 <Typography variant="h5" component="div">
-                  Blåhals
+                  {observationData.note}
                 </Typography>
                 <Typography variant="body2">
                   11. august, 2023
