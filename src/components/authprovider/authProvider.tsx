@@ -21,6 +21,7 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const isAuth = async () => {
       try {
         const response = await fetch("http://localhost:8080/api/authenticate", {
+          method: "GET",
           credentials: "include",
         });
 
