@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
-export default function Navbar() {
+export default function LoggedInNavbar() {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -22,6 +22,16 @@ export default function Navbar() {
           FOTOFUGLEN
         </Typography>
         <Stack direction="row" spacing={2}>
+          <Button key="Profile">
+            <Typography textAlign="center">
+              <Link
+                to={`Profile`}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                Profile
+              </Link>
+            </Typography>
+          </Button>
           <Button key="Photos">
             <Typography textAlign="center">
               <Link
@@ -42,23 +52,13 @@ export default function Navbar() {
               </Link>
             </Typography>
           </Button>
-          <Button key="Login">
+          <Button key="Logout">
             <Typography textAlign="center">
               <Link
-                to={`Login`}
+                to={`Logout`}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                Login
-              </Link>
-            </Typography>
-          </Button>
-          <Button key="Signup">
-            <Typography textAlign="center">
-              <Link
-                to={`Signup`}
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                Signup
+                Logout
               </Link>
             </Typography>
           </Button>
