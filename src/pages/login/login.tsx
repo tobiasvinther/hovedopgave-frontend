@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { TextField, Button, Box, Container, Typography } from '@mui/material';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
@@ -10,7 +12,7 @@ const Login = () => {
   const handleLogin = async (e: { preventDefault: () => void; }) => {
     e.preventDefault()
 
-    
+    //http://localhost:8080/api/login
     const response = await fetch('http://localhost:8080/api/login', {
       method: 'POST',
       body: JSON.stringify({ 
@@ -22,7 +24,7 @@ const Login = () => {
       },
     });
     
-    const data = await response.json(); // data/objectet laves om til Json
+    const data = await response.json(); 
     console.log(data); 
     
     
@@ -30,10 +32,18 @@ const Login = () => {
     if (data.failed || data.passwordfailed) {
       console.log('Email or Password didnt match try again!')
       navigate('/Login')
+      toast.error('Login failed try again!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000, // Duration the notification will be displayed (in milliseconds)
+      });
     } else if(data) {
       // Hvis success så logges der ind og navigeres til til en side
       console.log('Login successfull!');
       navigate('/');
+      toast.success('Login successfully!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000, // Duration the notification will be displayed (in milliseconds)
+      });
     }
 
   };
@@ -57,7 +67,8 @@ const Login = () => {
             type="email" 
             value={email}
             margin="normal" 
-            required fullWidth
+            required 
+            fullWidth
             onChange={(e) => setEmail(e.target.value)} 
           />
           <TextField
