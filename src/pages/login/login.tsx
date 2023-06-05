@@ -20,6 +20,7 @@ const Login = () => {
       }),
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
     });
 
@@ -33,8 +34,9 @@ const Login = () => {
     } else if (data) {
       // Hvis success så logges der ind og navigeres til til en side
       console.log("Login successfull!");
-      setAuth(true);
+      console.log(response);
       navigate("/");
+      setAuth(true);
     }
   };
 
