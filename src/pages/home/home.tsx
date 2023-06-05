@@ -17,6 +17,27 @@ export default function Home() {
     console.log("handlesearchchange", value)
   }
 
+  /*
+  async function fetchObservations() {
+    try {
+        const response = await fetch("http://localhost:8080/api/observations/" + searchValue);
+        const data = await response.json();
+        const thisBird : Bird = {
+            id : data.id,
+            species: data.species,
+            subspecies : data.subspecies,
+            order : data.order,
+            redList : data.redList,
+            description : data.description
+        }
+        setCurrentBird(thisBird);
+        console.log("currentBird", data)
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+};
+*/
+
   return (
     <>
     <div style={{ marginLeft: '190px', marginRight: '190px', marginTop: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', height: '20vh' }}>
