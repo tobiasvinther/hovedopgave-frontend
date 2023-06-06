@@ -4,6 +4,7 @@ import BirdInfo from "./pages/birdInfo/birdInfo";
 import MapView from "./pages/map/mapTest";
 import { Observation } from "./pages/observation/observation";
 import { Route, Routes } from "react-router";
+import ObservationCardTest from "./pages/observationCardTest/observationCardTest";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import { useAuth } from "./components/authprovider/authProvider";
@@ -28,6 +29,7 @@ function App() {
             path="Observation"
             element={<Observation onSubmit={() => {}} />}
           />
+          <Route path="ObservationCardTest" element={<ObservationCardTest/>} />
           <Route path="Login" element={<Login />} />
           <Route path="Register" element={<Register />} />
         </Routes>
