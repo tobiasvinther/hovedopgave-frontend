@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { TextField, Button, Box, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../../components/authprovider/authProvider";
 
 const Login = () => {
@@ -32,12 +34,16 @@ const Login = () => {
     if (data.failed || data.passwordfailed) {
       console.log("Email or Password didnt match try again!");
       navigate("/Login");
+      toast.error("Login failed try again!", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000, // Duration the notification will be displayed (in milliseconds)
+      });
     } else if (data) {
-      setAuth(true);
       // Hvis success så logges der ind og navigeres til til en side
       console.log("Login successfull!");
       console.log(response);
       navigate("/");
+      setAuth(true);
     }
   };
 
