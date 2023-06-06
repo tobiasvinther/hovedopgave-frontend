@@ -27,7 +27,6 @@ interface ObservationProps {
 }
 
 export const Observation: React.FC<ObservationProps> = () => {
-  const formData = new FormData();
   const latitudeRegex =
     /^(54\.6[0-9]{4}|54\.[7-9][0-9]{4}|55\.[0-8][0-9]{4}|55\.9[0-2][0-9]{3})$/;
   const longitudeRegex =
@@ -52,20 +51,28 @@ export const Observation: React.FC<ObservationProps> = () => {
           imageRef: "",
         }}
         onSubmit={(values) => {
+          const formData = new FormData();
           if (values.image) formData.append("image", values.image);
           formData.append("species", values.species);
           formData.append("latitude", values.latitude);
           formData.append("longitude", values.longitude);
           formData.append("date", values.date.toString());
           formData.append("note", values.note);
-          fetch("http://localhost:8080/api/upload", {
+          fetch("http://localhost:8080/api/observations", {
             method: "POST",
             body: formData,
-          });
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data); // Response from the server
+            })
+            .catch((error) => {
+              console.error(error);
+            });
         }}
       >
         {({ values, handleChange, setFieldValue }) => (
-          <Form>
+          <Form encType="multipart/form-data">
             <Stack spacing={3} style={{ alignItems: "center" }}>
               <TextField
                 required
