@@ -14,6 +14,7 @@ const Login = () => {
 
     const response = await fetch("http://localhost:8080/api/login", {
       method: "POST",
+      credentials: "include",
       body: JSON.stringify({
         email,
         password,
@@ -32,11 +33,11 @@ const Login = () => {
       console.log("Email or Password didnt match try again!");
       navigate("/Login");
     } else if (data) {
+      setAuth(true);
       // Hvis success så logges der ind og navigeres til til en side
       console.log("Login successfull!");
       console.log(response);
       navigate("/");
-      setAuth(true);
     }
   };
 
