@@ -7,8 +7,9 @@ type ObservationProps = {
       id : Number,
       date : Date,
       note : string,
-      BirdId : Number,
-      UserId : Number
+      birdId : Number,
+      UserId : Number,
+      ImageId : Number
     }
   }
   
@@ -18,8 +19,9 @@ const observationTest : ObservationProps = {
     id : 1,
     date : new Date(),
     note : "A note",
-    BirdId : 1,
-    UserId : 1
+    birdId : 1,
+    UserId : 1,
+    ImageId : 1
   }
 }
 
