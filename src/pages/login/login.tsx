@@ -3,11 +3,13 @@ import { TextField, Button, Box, Container, Typography } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "../../components/authprovider/authProvider";
 
 const Login = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
 
   const handleLogin = async (e: { preventDefault: () => void; }) => {
     e.preventDefault()
@@ -18,9 +20,18 @@ const Login = () => {
       body: JSON.stringify({ 
         email, 
         password 
+  const handleLogin = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+
+    const response = await fetch("http://localhost:8080/api/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password,
       }),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
     });
     
@@ -28,6 +39,10 @@ const Login = () => {
     console.log(data); 
     
     
+
+    const data = await response.json(); // data/objectet laves om til Json
+    console.log(data);
+
     // Hvis af nedenstående er true så der fejl i email eller password
     if (data.failed || data.passwordfailed) {
       console.log('Email or Password didnt match try again!')
@@ -45,7 +60,6 @@ const Login = () => {
         autoClose: 3000, // Duration the notification will be displayed (in milliseconds)
       });
     }
-
   };
 
   return (
@@ -53,18 +67,18 @@ const Login = () => {
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         <Typography variant="h4" gutterBottom>
           Login
         </Typography>
         <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
-          <TextField 
-            label="Email" 
-            type="email" 
+          <TextField
+            label="Email"
+            type="email"
             value={email}
             margin="normal" 
             required 
@@ -84,7 +98,7 @@ const Login = () => {
             Login
           </Button>
           <Button>
-            <a href='/register'>Register new user profil</a>
+            <a href="/register">Register new user profil</a>
           </Button>
         </Box>
       </Box>
