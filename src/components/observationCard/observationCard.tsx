@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CardMedia from '@mui/material/CardMedia';
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type ObservationProps = {
   observationData : {
@@ -14,17 +15,9 @@ type ObservationProps = {
     note : string,
     birdId : Number,
     UserId : Number,
-    ImageId : Number
+    ImageId : Number,
   }
 }
-
-/*
-Brug BirdId til at finde den rette fugl
-Find Location
-Brug UserId til at finde user
-etc.
-
-*/
 
 export default function ObservationCard({observationData} : ObservationProps ) {
 
@@ -52,6 +45,21 @@ export default function ObservationCard({observationData} : ObservationProps ) {
     setSpecies(foundSpecies);
   }
 
+  const navigate = useNavigate();
+
+  async function handleNavigateToMap() {
+
+    console.log("LocationId", observationData.id)
+
+    const response = await fetch("http://localhost:8080/api/locations/" + observationData.id);
+    const location = await response.json();
+
+    navigate("/mapView", { state: {
+        longitude : location.latitude,
+        latitude : location.longitude
+      }
+    });
+  }
 
   return (
     <>
@@ -73,7 +81,7 @@ export default function ObservationCard({observationData} : ObservationProps ) {
                 {observationData?.note}
                 </Typography>
                 <CardActions sx={{paddingBottom : '0px', marginBottom : '0px', padding : '0px', marginTop : '5px' }}>
-                  <Button sx={{paddingBottom : '0px', marginBottom : '0px', padding : '0px', marginTop : '5px' }} size="small">Se på kort</Button>
+                  <Button sx={{paddingBottom : '0px', marginBottom : '0px', padding : '0px', marginTop : '5px' }} size="small" onClick={handleNavigateToMap}>Se på kort</Button>
                 </CardActions>
               </CardContent>
               <CardMedia
