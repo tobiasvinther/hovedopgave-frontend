@@ -1,15 +1,19 @@
 import {GoogleMap, useLoadScript, Marker, MarkerF} from "@react-google-maps/api"
-import {useMemo} from "react";
+import {useMemo, useRef} from "react";
 import { mapStyles } from "../../components/map/mapStyles"
 import { Grid } from "@mui/material";
+import { Container } from "../../components/container/container";
 //mport * as dotenv from "dotenv"
 //import Map from "../../components/map/map";
 //import pin from "Frontend/graphics/pin.png"
 //import { Wrapper, Status } from "@googlemaps/react-wrapper"
+import { useLocation } from 'react-router-dom';
 
 
 
 export default function MapView() {
+
+    
 
     //dotenv.config()
 
@@ -31,14 +35,23 @@ export default function MapView() {
 
     return (
     <>
-        <div>The map should be under this</div>
+    <Container>
         <Map/>
+    </Container>
+        
     </>
     )
 
 }
 
 function Map() {
+
+    const location = useLocation();
+    const data = location.state;
+    console.log(data)
+
+    const markerFromState = {lat: data.latitude, lng: data.longitude}
+
 
     const mapOptions = {
         //mapTypeId: 'terrain',
@@ -52,12 +65,12 @@ function Map() {
             //strictBounds: true,
         },
 
-        styles: mapStyles
+        //styles: mapStyles
     };
 
     const containerStyle = {
-  width: '600px',
-  height: '600px'
+  width: '800px',
+  height: '800px'
 };
 
     const markerOptions = {
@@ -80,8 +93,9 @@ function Map() {
       justifyContent="center"
       style={{ minHeight: "50vh" }}
     >
-      <GoogleMap zoom={7} center={mapCenter} mapContainerStyle={containerStyle} mapContainerClassName={"map-container"} options={mapOptions}>
-        <MarkerF position={markerCenter} />
+      <GoogleMap zoom={12} center={markerFromState} mapContainerStyle={containerStyle} mapContainerClassName={"map-container"} options={mapOptions}>
+        {/*<MarkerF position={markerCenter} />*/}
+        <MarkerF position={markerFromState}/>
     </GoogleMap>
     </Grid>
     

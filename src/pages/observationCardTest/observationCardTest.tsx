@@ -9,7 +9,7 @@ type ObservationProps = {
       note : string,
       birdId : Number,
       UserId : Number,
-      ImageId : Number
+      ImageId : Number,
     }
   }
   
@@ -21,7 +21,7 @@ const observationTest : ObservationProps = {
     note : "A note",
     birdId : 1,
     UserId : 1,
-    ImageId : 1
+    ImageId : 1,
   }
 }
 
