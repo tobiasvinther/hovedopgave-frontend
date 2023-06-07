@@ -55,8 +55,8 @@ export default function ObservationCard({observationData} : ObservationProps ) {
     const location = await response.json();
 
     navigate("/mapView", { state: {
-        longitude : location.latitude,
-        latitude : location.longitude
+        latitude : location.latitude,
+        longitude : location.longitude
       }
     });
   }
