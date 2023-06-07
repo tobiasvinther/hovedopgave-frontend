@@ -32,16 +32,6 @@ export default function NotAuthNavbar() {
               </Link>
             </Typography>
           </Button>
-          <Button key="Observation">
-            <Typography textAlign="center">
-              <Link
-                to={`Observation`}
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                Observation
-              </Link>
-            </Typography>
-          </Button>
           <Button key="Login">
             <Typography textAlign="center">
               <Link

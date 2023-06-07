@@ -60,6 +60,7 @@ export const Observation: React.FC<ObservationProps> = () => {
           formData.append("note", values.note);
           fetch("http://localhost:8080/api/observations", {
             method: "POST",
+            credentials: "include",
             body: formData,
           })
             .then((response) => response.json())
