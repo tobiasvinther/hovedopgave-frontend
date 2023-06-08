@@ -12,6 +12,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
 import { AddAPhoto } from "@mui/icons-material";
 import { Container } from "../../components/container/container";
+import { useAuth } from "../../components/authprovider/authProvider";
 
 interface Values {
   species: string;
@@ -27,11 +28,30 @@ interface ObservationProps {
 }
 
 export const Observation: React.FC<ObservationProps> = () => {
+  const { auth } = useAuth();
   const latitudeRegex =
     /^(54\.6[0-9]{4}|54\.[7-9][0-9]{4}|55\.[0-8][0-9]{4}|55\.9[0-2][0-9]{3})$/;
   const longitudeRegex =
     /^(8\.[0-9]{4}|9\.[0-8][0-9]{4}|9\.9[0-9]{4}|10\.[0-3][0-9]{4}|10\.4[0-2][0-9]{3})$/;
 
+  if (auth !== true) {
+    return (
+      <Container>
+        <Typography
+          variant="h5"
+          sx={{ marginTop: 2, marginLeft: 55, marginBottom: 2 }}
+        >
+          Observation
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          sx={{ marginTop: 2, marginLeft: 55, marginBottom: 2 }}
+        >
+          Du skal være logged ind for at bruge denne side
+        </Typography>
+      </Container>
+    );
+  }
   return (
     <Container>
       <Typography
