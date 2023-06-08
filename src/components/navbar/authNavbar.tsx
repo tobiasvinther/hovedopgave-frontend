@@ -8,8 +8,31 @@ import {
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+//import handleLogout from "../../pages/logout/logout";
+import { useAuth } from "../../components/authprovider/authProvider";
+import { toast } from "react-toastify";
 
 export default function AuthNavbar() {
+
+  const handleLogout = async () => {
+    const { setAuth } = useAuth();
+    const response = await fetch('http://localhost:8080/api/logout', {
+      credentials: "include"
+    });
+    
+    const resData = await response.json();
+    console.log(resData)
+
+    if(resData.sessionDestroyed) {
+      console.log('Session destroyed!')
+      setAuth(false);
+      toast.success('Logout successfully!', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000, // will stay for 3 sec
+      })
+    }
+  }
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -52,7 +75,7 @@ export default function AuthNavbar() {
               </Link>
             </Typography>
           </Button>
-          <Button key="Logout">
+          <Button key="Logout" onClick={handleLogout}>
             <Typography textAlign="center">
               <Link
                 to={`Logout`}

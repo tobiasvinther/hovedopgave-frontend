@@ -11,6 +11,7 @@ import PhotoGrid from "./components/fotofeed/photoGrid";
 import NotAuthNavbar from "./components/navbar/notAuthNavbar";
 import AuthNavbar from "./components/navbar/authNavbar";
 import Logout from "./pages/logout/logout";
+import handleLogout from "./pages/logout/logout";
 
 function App() {
   const { auth } = useAuth();
@@ -31,7 +32,6 @@ function App() {
           />
           <Route path="Login" element={<Login />} />
           <Route path="Register" element={<Register />} />
-          <Route path="Logout" element={<Logout />} />
         </Routes>
       </header>
     </div>

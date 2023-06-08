@@ -52,13 +52,13 @@ export default function NotAuthNavbar() {
               </Link>
             </Typography>
           </Button>
-          <Button key="Signup">
+          <Button key="Register">
             <Typography textAlign="center">
               <Link
-                to={`Signup`}
+                to={`Register`}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                Signup
+                Register
               </Link>
             </Typography>
           </Button>
