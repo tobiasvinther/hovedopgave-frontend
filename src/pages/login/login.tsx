@@ -40,10 +40,13 @@ const Login = () => {
       });
     } else if (data) {
       // Hvis success så logges der ind og navigeres til til en side
-      console.log("Login successfull!");
-      console.log(response);
-      navigate("/");
       setAuth(true);
+      console.log("Login successfull!");
+      navigate("/");
+      toast.success("Login successfully!", {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000, // Duration the notification will be displayed (in milliseconds)
+      });
     }
   };
 

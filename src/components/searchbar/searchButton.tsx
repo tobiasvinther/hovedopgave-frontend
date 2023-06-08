@@ -1,10 +1,15 @@
 import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
 
-export default function SearchBtn() {
+
+
+export default function SearchBtn({searchValue, onSearch} : any) {
+
+  async function handleSearch() {
+    console.log("You clicked search with the value", searchValue);
+    onSearch();
+  }
+
   return (
-    <Stack direction="row" spacing={2}>
-      <Button>Søg</Button>
-    </Stack>
+      <Button variant="contained" onClick={handleSearch}>Søg</Button>
   );
 }
