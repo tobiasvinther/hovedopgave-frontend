@@ -1,5 +1,4 @@
 import Home from "./pages/home/home";
-
 import BirdInfo from "./pages/birdInfo/birdInfo";
 import MapView from "./pages/map/mapTest";
 import { Observation } from "./pages/observation/observation";
@@ -29,7 +28,7 @@ function App() {
             path="Observation"
             element={<Observation onSubmit={() => {}} />}
           />
-          <Route path="ObservationCardTest" element={<ObservationCardTest/>} />
+          <Route path="ObservationCardTest" element={<ObservationCardTest />} />
           <Route path="Login" element={<Login />} />
           <Route path="Register" element={<Register />} />
         </Routes>

@@ -31,7 +31,7 @@ export default function AuthNavbar() {
       navigate("/");
       toast.success("Logout successfully!", {
         position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000, // will stay for 3 sec
+        autoClose: 3000,
       });
     }
   };
@@ -58,13 +58,13 @@ export default function AuthNavbar() {
               </Link>
             </Typography>
           </Button>
-          <Button key="Photos">
+          <Button key="BirdInfo">
             <Typography textAlign="center">
               <Link
-                to={`Photos`}
+                to={`BirdInfo`}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                Photos
+                Bird Info
               </Link>
             </Typography>
           </Button>

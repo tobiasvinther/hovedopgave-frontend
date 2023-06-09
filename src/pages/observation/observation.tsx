@@ -85,7 +85,7 @@ export const Observation: React.FC<ObservationProps> = () => {
           })
             .then((response) => response.json())
             .then((data) => {
-              console.log(data); // Response from the server
+              console.log(data);
             })
             .catch((error) => {
               console.error(error);
@@ -113,7 +113,7 @@ export const Observation: React.FC<ObservationProps> = () => {
                 error={!values.latitude && !latitudeRegex.test(values.latitude)}
                 helperText={
                   values.latitude && !latitudeRegex.test(values.latitude)
-                    ? "Invalid latitude coordinate"
+                    ? "Ugyldige breddegrad"
                     : null
                 }
               />
@@ -129,7 +129,7 @@ export const Observation: React.FC<ObservationProps> = () => {
                 }
                 helperText={
                   values.longitude && !longitudeRegex.test(values.longitude)
-                    ? "Invalid latitude coordinate"
+                    ? "Ugyldige længdegrad"
                     : null
                 }
               />

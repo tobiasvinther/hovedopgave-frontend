@@ -22,13 +22,13 @@ export default function NotAuthNavbar() {
           FOTOFUGLEN
         </Typography>
         <Stack direction="row" spacing={2}>
-          <Button key="Photos">
+          <Button key="BirdInfo">
             <Typography textAlign="center">
               <Link
-                to={`Photos`}
+                to={`BirdInfo`}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                Photos
+                BirdInfo
               </Link>
             </Typography>
           </Button>
