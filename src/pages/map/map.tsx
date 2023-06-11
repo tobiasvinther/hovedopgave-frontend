@@ -1,5 +1,4 @@
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
-import { useMemo, useRef } from "react";
 import { Grid } from "@mui/material";
 import { Container } from "../../components/container/container";
 import { useLocation } from "react-router-dom";

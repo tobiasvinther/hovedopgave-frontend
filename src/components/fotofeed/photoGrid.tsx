@@ -46,7 +46,6 @@ export default function PhotoGrid({ birdId }: any) {
             <img
               src={`${item.url}?w=248&fit=crop&auto=format`}
               srcSet={`${item.url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              //alt={item.title}
               loading="lazy"
             />
           </ImageListItem>

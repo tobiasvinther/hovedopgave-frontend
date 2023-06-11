@@ -1,4 +1,4 @@
-import { Grid, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import SearchBar from "../../components/searchbar/searchBar";
 import SearchBtn from "../../components/searchbar/searchButton";
 import { useEffect, useState } from "react";
