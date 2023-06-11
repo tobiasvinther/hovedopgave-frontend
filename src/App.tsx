@@ -11,6 +11,7 @@ import { useAuth } from "./components/authprovider/authProvider";
 import PhotoGrid from "./components/fotofeed/photoGrid";
 import NotAuthNavbar from "./components/navbar/notAuthNavbar";
 import AuthNavbar from "./components/navbar/authNavbar";
+import Profile from "./pages/profile/profile";
 
 function App() {
   const { auth } = useAuth();
@@ -30,6 +31,7 @@ function App() {
             element={<Observation onSubmit={() => {}} />}
           />
           <Route path="ObservationCardTest" element={<ObservationCardTest/>} />
+          <Route path="Profile" element={<Profile />} />
           <Route path="Login" element={<Login />} />
           <Route path="Register" element={<Register />} />
         </Routes>
