@@ -1,9 +1,10 @@
 import React from 'react';
-import { Avatar, Box, Typography, Container, Grid } from '@mui/material';
+import { Avatar, Typography, Container } from '@mui/material';
+import myDummyImage from "../../components/dummyImage/dummypicture.jpg"
 
 const Profile = () => {
   return (
-    <Box sx={{
+    <Container sx={{
         marginTop: 8,
         display: 'flex',
         flexDirection: 'column',
@@ -11,7 +12,7 @@ const Profile = () => {
       }}>
       <Avatar
         alt="Your Name"
-        src="/path/to/profile-picture.jpg"
+        src={ myDummyImage }
         sx={{ width: 150, height: 150, marginBottom: 7 }}
       />
       <Typography variant="h4" gutterBottom>
@@ -23,7 +24,7 @@ const Profile = () => {
       <Typography variant="body1" gutterBottom>
         Your bird observations
       </Typography>
-    </Box>
+    </Container>
   );
 };
 
