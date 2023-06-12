@@ -27,25 +27,23 @@ const Login = () => {
       },
     });
 
-    const data = await response.json(); // data/objectet laves om til Json
+    const data = await response.json();
     console.log(data);
 
-    // Hvis af nedenstående er true så der fejl i email eller password
     if (data.failed || data.passwordfailed) {
       console.log("Email or Password didnt match try again!");
       navigate("/Login");
       toast.error("Login failed try again!", {
         position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000, // Duration the notification will be displayed (in milliseconds)
+        autoClose: 3000,
       });
     } else if (data) {
-      // Hvis success så logges der ind og navigeres til til en side
       setAuth(true);
       console.log("Login successfull!");
       navigate("/");
       toast.success("Login successfully!", {
         position: toast.POSITION.TOP_RIGHT,
-        autoClose: 3000, // Duration the notification will be displayed (in milliseconds)
+        autoClose: 3000,
       });
     }
   };

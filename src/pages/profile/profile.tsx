@@ -1,18 +1,19 @@
-import React from 'react';
-import { Avatar, Typography, Container } from '@mui/material';
-import myDummyImage from "../../components/dummyImage/dummypicture.jpg"
+import { Avatar, Typography, Container } from "@mui/material";
+import myDummyImage from "../../components/dummyImage/dummypicture.jpg";
 
 const Profile = () => {
   return (
-    <Container sx={{
+    <Container
+      sx={{
         marginTop: 8,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}>
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <Avatar
         alt="Your Name"
-        src={ myDummyImage }
+        src={myDummyImage}
         sx={{ width: 150, height: 150, marginBottom: 7 }}
       />
       <Typography variant="h4" gutterBottom>

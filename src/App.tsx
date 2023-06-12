@@ -1,10 +1,8 @@
 import Home from "./pages/home/home";
-
 import BirdInfo from "./pages/birdInfo/birdInfo";
-import MapView from "./pages/map/mapTest";
+import MapView from "./pages/map/map";
 import { Observation } from "./pages/observation/observation";
 import { Route, Routes } from "react-router";
-import ObservationCardTest from "./pages/observationCardTest/observationCardTest";
 import Login from "./pages/login/login";
 import Register from "./pages/register/register";
 import { useAuth } from "./components/authprovider/authProvider";
@@ -25,12 +23,10 @@ function App() {
           <Route path="BirdInfo" element={<BirdInfo />} />
           <Route path="MapView" element={<MapView />} />
           <Route path="FotoFeed" element={<PhotoGrid />} />
-          <Route path="MapView" element={<MapView />} />
           <Route
             path="Observation"
             element={<Observation onSubmit={() => {}} />}
           />
-          <Route path="ObservationCardTest" element={<ObservationCardTest/>} />
           <Route path="Profile" element={<Profile />} />
           <Route path="Login" element={<Login />} />
           <Route path="Register" element={<Register />} />

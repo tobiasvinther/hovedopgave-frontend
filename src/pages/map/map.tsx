@@ -1,22 +1,9 @@
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  MarkerF,
-} from "@react-google-maps/api";
-import { useMemo, useRef } from "react";
-import { mapStyles } from "../../components/map/mapStyles";
+import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api";
 import { Grid } from "@mui/material";
 import { Container } from "../../components/container/container";
-//mport * as dotenv from "dotenv"
-//import Map from "../../components/map/map";
-//import pin from "Frontend/graphics/pin.png"
-//import { Wrapper, Status } from "@googlemaps/react-wrapper"
 import { useLocation } from "react-router-dom";
 
 export default function MapView() {
-  //dotenv.config()
-
   let key = "";
 
   if (process.env.REACT_APP_GOOGLE_API) {
@@ -50,7 +37,6 @@ function Map() {
   const markerFromState = { lat: data.latitude, lng: data.longitude };
 
   const mapOptions = {
-    //mapTypeId: 'terrain',
     restriction: {
       latLngBounds: {
         north: 57.7525,
@@ -58,27 +44,13 @@ function Map() {
         east: 15.197222,
         west: 8.0725,
       },
-      //strictBounds: true,
     },
-
-    //styles: mapStyles
   };
 
   const containerStyle = {
     width: "800px",
     height: "800px",
   };
-
-  const markerOptions = {
-    icon: {
-      //url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-      //url: pin,
-      //scaledSize: { width: 50, height: 50 }
-    },
-  };
-
-  const mapCenter = useMemo(() => ({ lat: 56, lng: 10.5 }), []); //Calculate once
-  const markerCenter = useMemo(() => ({ lat: 55.45, lng: 12.18 }), []); //Calculate once
 
   return (
     <Grid
@@ -95,18 +67,8 @@ function Map() {
         mapContainerClassName={"map-container"}
         options={mapOptions}
       >
-        {/*<MarkerF position={markerCenter} />*/}
         <MarkerF position={markerFromState} />
       </GoogleMap>
     </Grid>
   );
 }
-
-/*
-export default function MapView() {
-    
-    return (
-    <><div>Hej</div><Map></Map></>
-    )
-}
-*/
