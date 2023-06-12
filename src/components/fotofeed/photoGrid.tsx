@@ -23,7 +23,7 @@ export default function PhotoGrid({ birdId }: any) {
     try {
       const response = await fetch(
         "http://localhost:8080/api/images/" + birdId
-      ); //HARDCODED ID PT
+      );
       const data = await response.json();
       console.log("Data", data);
       const imageList: Image[] = [];

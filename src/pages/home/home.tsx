@@ -17,14 +17,6 @@ export default function Home() {
     console.log("ObservationList:", observationList);
   }, [observationList]);
 
-  async function fetchImagePath(observationId: Number) {
-    const response = await fetch(
-      "http://localhost:8080/api/imageByObservation/" + observationId
-    );
-    const data = await response.json();
-    console.log("Image path", data?.path);
-  }
-
   function handleSearchChange(event: any, value: string) {
     setSearchValue(value || ""); // If value is null, set an empty string
     console.log("handlesearchchange", value);
